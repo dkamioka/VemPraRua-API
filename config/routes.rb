@@ -1,7 +1,10 @@
 VemPraRua::Application.routes.draw do
-  get "users/create"
+  get "home/index"
 
-  get "users/update"
+  namespace :api do
+    resources :users
+    resources :locations
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
