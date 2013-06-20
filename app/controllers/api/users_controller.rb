@@ -22,6 +22,7 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.where("updated_at > ?", Time.now - 1.hour)
+    #@users = User.where("updated_at > ?", Time.now - 1.hour)
+    @users = User.all
   end
 end

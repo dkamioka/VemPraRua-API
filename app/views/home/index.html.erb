@@ -24,7 +24,10 @@
     </script>
   </head>
   <body ng-controller="MapCtrl">
-<div class="google-map" 
+  <div style="z-index:999999999999999999999">
+    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+  </div>
+  <div class="google-map" 
 		center="position.coords"
 		zoom="zoomProperty"
 		markers="markers"
@@ -32,8 +35,8 @@
 		longitude="clickedLongitudeProperty"
 		draggable="true"
 		events="eventsProperty"
-		style="height: 100%; width: 100%">
-	</div>
+		style="height: 100%; width: 100%; z-index:9998">
+  </div>
 		<debug>{{total}} Manifestantes.!</debug>
-  </body>
+    </body>
 </html>
