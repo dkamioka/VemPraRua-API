@@ -1,25 +1,41 @@
-<%= content_for :title do %>Encontre alguém na Campus Party Brasil<% end %>
-
-<% content_for :head do %>
-  <% end %>
-
-  <% content_for :map do %>
-      <div id="map_canvas" class="" style="margin-top:40px; width:100%; height:100%; position:absolute; z-index:-1;"></div>
-    <% end %>
-
-    <div id="home-main" class="hero-unit">
-        <h1>VEM PRA RUA</h1>
-        <br/>
-        <div id="home-main-content">
-          <p>
-            Encontre alguém<br/>
-            na Campus Party Brasil #CPBR6<br/>
-          </p>
-          <br/>
-          <p>
-            <%= link_to "Visualizar Mapa", "#", class: "btn btn-primary btn-large", :onclick => "showMap();" %>
-          </p>
-        </div>
-      </div>
-
-      <%= render "shared/map" %>
+<!DOCTYPE html>
+<html ng-app='vemPraRua'>
+<head>
+  <title>VemPraRua</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9qzGHxiCcbqQP-lwobg-BMDlircBa7Ec&sensor=false">
+	</script>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+			.angular-google-map {
+				display: block;
+			}
+    </style>
+    <script type="text/javascript">			
+      var app = {
+          base: '/',
+          api: '/api/'
+          };
+    </script>
+  </head>
+  <body ng-controller="MapCtrl">
+<div class="google-map" 
+		center="position.coords"
+		zoom="zoomProperty"
+		markers="markers"
+		latitude="clickedLatitudeProperty"
+		longitude="clickedLongitudeProperty"
+		mark-click="true"
+		draggable="true"
+		fit="true"
+		events="eventsProperty"
+		style="height: 1000px; width: 100%">
+	</div>
+		<debug>{{total}} Manifestantes.!</debug>
+  </body>
+</html>

@@ -7,4 +7,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require angular.min
+//= require angular-resource.min
+//= require angular-google-maps
+//= require ga
+//= require ng-app
+//= require ng-controllers/map
 //= require_tree .
