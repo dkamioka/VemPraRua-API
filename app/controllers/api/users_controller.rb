@@ -1,6 +1,8 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.create(params[:user])
+    @user.name = "Anonymous \# #{@user.id}"
+    @user.save
   end
 
   def update

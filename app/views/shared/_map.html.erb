@@ -4,15 +4,15 @@
   var map;
     function initialize() {
         var mapOptions = {
-              zoom: <%= @zoom || @event.zoom %>,
-              center: new google.maps.LatLng(<%= @center_lat %>, <%= @center_lng %>),
+              zoom: 5,
+              center: new google.maps.LatLng(-23, -46),
               mapTypeId: google.maps.MapTypeId.ROADMAP
             };
         map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
     
         var imageBounds = new google.maps.LatLngBounds(
-                  new google.maps.LatLng(<%= @event.img_bound_esq_inf_lat %>, <%= @event.img_bound_esq_inf_lng %>),
-                  new google.maps.LatLng(<%= @event.img_bound_dir_sup_lat %>, <%= @event.img_bound_dir_sup_lng %>));
+                  new google.maps.LatLng(-23.558362,-46.635381),
+                  new google.maps.LatLng(-23.569494,-46.66804);
     
     
         var contentStrings = new Array();
@@ -20,23 +20,17 @@
         var markers = new Array();
     
         <% i=0 %>
-        <% @locations.each do |location| %>
-            contentStrings[<%=i%>]= '<h2 class="firstHeading"><img src="<%= location.picture %>"> <a target="_blank" href="http://twitter.com/<%=escape_javascript location.twitter %>">@<%=escape_javascript location.twitter %></h2></a>'+
+        <% @users.each do |user| %>
+            contentStrings[<%=i%>]= '<h2 class="firstHeading"><%= image_tag "SPARTAMARKER.jpg" %> <a target="_blank" href="http://vemprarua.k3x.org/">VEM PRA RUA</a>'+
           '<div class="bodyContent">'+
-          '<p>'+'<%= location.last_tweet %></p>'+
           '</div>';
           
           markers[<%=i%>] = new google.maps.Marker({
                   position: new google.maps.LatLng(<%=location.lat%>, <%=location.lng%>),
                   map: map,
-                  title:"@<%=location.twitter%>"
+                  title:"<%=user.name%>"
                 });
     
-          <% if location == @location %>
-              infowindow.setContent(contentStrings[<%=i%>]);
-            infowindow.open(map, markers[<%=i%>]);
-          <% end %>
-          
           google.maps.event.addListener(markers[<%=i%>], 'click', function() {
                   infowindow.setContent(contentStrings[<%=i%>]);
                   infowindow.open(map, markers[<%=i%>]);
@@ -45,8 +39,6 @@
           <% i+=1 %>
         <% end %>
         
-        <%= render "shared/images360" %>
-      }
 
         google.maps.event.addDomListener(window, 'load', initialize);
 </script>

@@ -1,7 +1,6 @@
 <%= content_for :title do %>Encontre alguém na Campus Party Brasil<% end %>
 
 <% content_for :head do %>
-    <%= render "shared/background_map" %>
   <% end %>
 
   <% content_for :map do %>
@@ -9,7 +8,7 @@
     <% end %>
 
     <div id="home-main" class="hero-unit">
-        <h1><%= APP_NAME %></h1>
+        <h1>VEM PRA RUA</h1>
         <br/>
         <div id="home-main-content">
           <p>
@@ -19,17 +18,8 @@
           <br/>
           <p>
             <%= link_to "Visualizar Mapa", "#", class: "btn btn-primary btn-large", :onclick => "showMap();" %>
-            <%= link_to "Como funciona?", "#", class: "btn btn-info btn-large" , :onclick => "$('#home-main-content').hide(); $('#home-video').removeClass('hidden'); $('#youtube-iframe').show();" %>
-          </p>
-        </div>
-        <div id="home-video" class="hidden">
-          <iframe id="youtube-iframe" width="560" height="315" src="http://www.youtube.com/embed/coUt4jPMB8w" frameborder="0" allowfullscreen></iframe>
-          <br/>
-          <p>
-            <%= link_to "Visualizar Mapa", "#", class: "btn btn-primary btn-large", :onclick => "showMap();" %>
           </p>
         </div>
       </div>
 
       <%= render "shared/map" %>
-      <%= render "shared/map_mobile_index" %>
