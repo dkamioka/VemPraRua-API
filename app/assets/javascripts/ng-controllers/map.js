@@ -52,18 +52,20 @@ vemPraRua.controller('MapCtrl',
 				if(data.users) {
 					$scope.markers = [];
 					$.each(data.users, function (i, user) {
-						if(user.status) {
-							infoWindow = "<b>" + user.name + ":</b> " + user.status;
-						} else {
-							infoWindow = "<b>" + user.name + "</b>";
+						if(user.latitude != 0.0 && user.longitude != 0.0) {
+							if(user.status) {
+								infoWindow = "<b>" + user.name + ":</b> " + user.status;
+							} else {
+								infoWindow = "<b>" + user.name + "</b>";
+							}
+							$scope.markers.push({
+									latitude: user.latitude,
+									longitude: user.longitude,
+									title: user.name,
+									infoWindow: infoWindow,
+									icon: '/assets/pin.png'
+							});
 						}
-						$scope.markers.push({
-								latitude: user.latitude,
-								longitude: user.longitude,
-								title: user.name,
-								infoWindow: infoWindow,
-								icon: '/assets/pin.png'
-						});
 					});
 					$scope.refresh = true;
 					$scope.findMe();
