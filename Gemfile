@@ -9,6 +9,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+group :production do
+  gem 'pg'
+end
 gem 'rabl'
 gem 'pushmeup'
 gem 'bcrypt-ruby', '~> 3.0.0'
