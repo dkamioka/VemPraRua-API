@@ -6,8 +6,13 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_id(params[:id])
-    @user.update_attributes(params[:user]) if @user
+    if (@user = User.find_by_id(params[:id])) 
+    @user.update_attributes(params[:user])
+    @user.location.latitude = params[:user][:latitude]
+    @user.location.longitude = params[:user][:longitude]
+    @user.save
+    end
+    
   end
 
   def show
