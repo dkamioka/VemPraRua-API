@@ -110,6 +110,7 @@ GEM
     multi_json (1.7.7)
     multi_xml (0.5.4)
     orm_adapter (0.4.0)
+    pg (0.15.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -195,6 +196,7 @@ DEPENDENCIES
   geocoder
   jquery-rails (= 2.3.0)
   less-rails
+  pg
   pushmeup
   rabl
   rails (= 3.2.13)
