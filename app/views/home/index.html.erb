@@ -1,2 +1,35 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= content_for :title do %>Encontre alguém na Campus Party Brasil<% end %>
+
+<% content_for :head do %>
+    <%= render "shared/background_map" %>
+  <% end %>
+
+  <% content_for :map do %>
+      <div id="map_canvas" class="" style="margin-top:40px; width:100%; height:100%; position:absolute; z-index:-1;"></div>
+    <% end %>
+
+    <div id="home-main" class="hero-unit">
+        <h1><%= APP_NAME %></h1>
+        <br/>
+        <div id="home-main-content">
+          <p>
+            Encontre alguém<br/>
+            na Campus Party Brasil #CPBR6<br/>
+          </p>
+          <br/>
+          <p>
+            <%= link_to "Visualizar Mapa", "#", class: "btn btn-primary btn-large", :onclick => "showMap();" %>
+            <%= link_to "Como funciona?", "#", class: "btn btn-info btn-large" , :onclick => "$('#home-main-content').hide(); $('#home-video').removeClass('hidden'); $('#youtube-iframe').show();" %>
+          </p>
+        </div>
+        <div id="home-video" class="hidden">
+          <iframe id="youtube-iframe" width="560" height="315" src="http://www.youtube.com/embed/coUt4jPMB8w" frameborder="0" allowfullscreen></iframe>
+          <br/>
+          <p>
+            <%= link_to "Visualizar Mapa", "#", class: "btn btn-primary btn-large", :onclick => "showMap();" %>
+          </p>
+        </div>
+      </div>
+
+      <%= render "shared/map" %>
+      <%= render "shared/map_mobile_index" %>

@@ -1,2 +1,5 @@
 object @user
-attributes :id, :latitude, :longitude
+attributes :id, :name, :latitude, :longitude
+node :errors do | o |
+  o.errors
+end
