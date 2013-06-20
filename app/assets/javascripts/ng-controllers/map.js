@@ -67,7 +67,6 @@ vemPraRua.controller('MapCtrl',
 							});
 						}
 					});
-					$scope.refresh = true;
 					$scope.findMe();
 				}
 
