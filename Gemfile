@@ -13,7 +13,9 @@ gem 'activeadmin'
 gem 'jquery-rails', '2.3.0'
 gem 'fb_graph'
 gem 'geocoder'
-
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
 
 
 # Gems used only for assets and not required
