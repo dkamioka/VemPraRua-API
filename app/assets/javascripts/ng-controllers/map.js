@@ -52,9 +52,16 @@ vemPraRua.controller('MapCtrl',
 				if(data.users) {
 					$scope.markers = [];
 					$.each(data.users, function (i, user) {
+						if(user.status) {
+							infoWindow = "<b>" + user.name + ":</b> " + user.status;
+						} else {
+							infoWindow = "<b>" + user.name + "</b>";
+						}
 						$scope.markers.push({
 								latitude: user.latitude,
 								longitude: user.longitude,
+								title: user.name,
+								infoWindow: infoWindow,
 								icon: '/assets/pin.png'
 						});
 					});
