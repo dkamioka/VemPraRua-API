@@ -1,14 +1,14 @@
 VemPraRua::Application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  root :to => "home#index"
-
-  get "home/index"
+  match "/" => "home#index"
 
   namespace :api do
     resources :users
     resources :locations
+    get "versions/last"
   end
 
   # The priority is based upon order of creation:
