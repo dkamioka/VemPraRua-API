@@ -1,2 +1,2 @@
 object @user
-attributes :id, :name, :latitude, :longitude
+attributes :id, :name, :status, :latitude, :longitude
