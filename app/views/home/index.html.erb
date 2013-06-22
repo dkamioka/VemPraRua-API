@@ -30,7 +30,10 @@
         var mapOptions = {
           center: new google.maps.LatLng(-23.558362, -46.635381),
           zoom: 14,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true,
+          scaleControl: true,
+          zoomControl: true
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
