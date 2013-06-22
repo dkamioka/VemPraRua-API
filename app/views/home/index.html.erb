@@ -132,7 +132,7 @@
             FB.api('/me', function(response) {
               $('#profile-name').html(response.name);
               if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (p) {
+                navigator.geolocation.getCurrentPosition(function (position) {
                   var latitude = position.coords.latitude;
                   var longitude = position.coords.longitude;
                   update(latitude, longitude);
@@ -207,7 +207,7 @@
           $('#profile-name').html(response.name);
           
           if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function (p) {
+              navigator.geolocation.getCurrentPosition(function (position) {
               var latitude = position.coords.latitude;
               var longitude = position.coords.longitude;
               update(latitude, longitude);
