@@ -206,7 +206,7 @@
         FB.api('/me', function(response) {
           $('#profile-name').html(response.name);
           
-          if (Modernizr.geolocation) {
+          if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (p) {
               var latitude = position.coords.latitude;
               var longitude = position.coords.longitude;
