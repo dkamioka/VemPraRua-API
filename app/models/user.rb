@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   end
 
 
-  def send_gcm_vemprarua(title,message,latitude,longitude)
-    GCM.send_notification(self.regid, { code: 2, title: title, message: message, latitude: latitude, longitude: longitude}) if self.regid
+  def send_gcm_vemprarua(title,message,latitude,longitude,zoom = 8)
+    GCM.send_notification(self.regid, { code: 2, title: title, message: message, latitude: latitude, longitude: longitude, zoom: zoom}) if self.regid
   end
 
 
