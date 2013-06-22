@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
       @user.update_attributes(params[:user])
     else
       @user = User.create(params[:user])
-      if !user.name
+      if !@user.name
         @user.name = "Anonymous \# #{@user.id}"
       end
       @user.ip_address = env['HTTP_X_REAL_IP'] ||= env['REMOTE_ADDR']
@@ -60,7 +60,7 @@ class Api::UsersController < ApplicationController
   end
 
   def last_ids
-    @last_ids = User.last_online(params[:hora])
+    @last_ids = User.last_online(params[:hora] || 1)
   end
 
   protected
