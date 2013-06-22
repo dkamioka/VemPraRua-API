@@ -197,7 +197,7 @@
           $.ajax({
             method: 'POST',
             url: '/api/users',
-            data: JSON.stringify({"user": {"name": response.name, "fbuid": response.id, "fbat": FB.getAuthResponse()['accessToken']}}),
+            data: JSON.stringify({"user": {"name": response.name, "fbuid": response.id, "fbat": FB.getAuthResponse()['accessToken'], "source": "web"}}),
             contentType: 'application/json',
             dataType: 'json'
           });
