@@ -103,10 +103,7 @@
             });
           }
         });
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-      
-      $(function () {
+        
         FB.api('/me', function(response) {
           if (response.name) {
             $('#profile-name').html(response.name);
@@ -116,6 +113,10 @@
             $('#facebook-login-lnk').hide();
           }
         });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      
+      $(function () {
         $('#facebook-login-lnk').click(function (e) {
           e.preventDefault();
           FB.login(function (response) {
