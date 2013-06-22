@@ -62,7 +62,7 @@ vemPraRua.controller('MapCtrl',
 									latitude: user.latitude,
 									longitude: user.longitude,
 									title: user.name,
-									infoWindow: infoWindow,
+									infoWindow: new google.maps.InfoWindow({content:infoWindow}),
 									icon: '/assets/pin.png'
 							});
 						}

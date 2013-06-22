@@ -1,4 +1,4 @@
-﻿var vemPraRua = angular.module("vemPraRua", ['ngResource', 'analytics', 'google-maps'])
+﻿var vemPraRua = angular.module("vemPraRua", ['ngResource', 'analytics', 'google-maps', 'AngularGM'])
 	.config(['AnalyticsProvider', function(AnalyticsProvider) {
 		AnalyticsProvider.account = 'AIzaSyA9qzGHxiCcbqQP-lwobg-BMDlircBa7Ec';
 	}]);

@@ -36,7 +36,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-
 # To use ActiveModel has_secure_password
 
 # To use Jbuilder templates for JSON
