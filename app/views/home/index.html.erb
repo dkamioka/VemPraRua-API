@@ -176,7 +176,7 @@
       if (response.status === 'connected') {
         FB.api('/me', function(response) {
           $('#profile-name').html(response.name);
-          FB.api("/me/picture?width=70&height=70",  function(response) {
+          FB.api("/me/picture?width=50&height=50",  function(response) {
             $('#profile-picure').attr({'src': response.data.url});
             $('#facebook-login-lnk').hide();
             $('#facebook-profile').show();
