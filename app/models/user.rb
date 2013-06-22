@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :fbuid, :latitude, :longitude, :name, :regid
+  attr_accessible :fbuid, :fbat, :latitude, :longitude, :name, :regid
   has_many :locations 
 
   def last_online(horas=1)

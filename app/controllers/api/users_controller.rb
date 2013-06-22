@@ -1,8 +1,14 @@
 class Api::UsersController < ApplicationController
 
   def create
-    @user = User.create(params[:user])
-    @user.name = "Anonymous \# #{@user.id}"
+    fbuid = params[:user][:fbuid]
+    @user = User.find_by_fbuid(fbuid) if fbuid
+    if @user
+      @user.update_attributes(params[:user])
+    else
+      @user = User.create(params[:user])
+      @user.name = "Anonymous \# #{@user.id}"
+    end
     @user.save
   end
 
