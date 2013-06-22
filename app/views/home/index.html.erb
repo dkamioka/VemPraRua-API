@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head prefix="og:http://ogp.me/ns# og_recipebox: http://ogp.me/ns/apps/vempraruaapp#">
+  <meta property="fb:app_id" content="647377431958376" />
   <title>VemPraRua</title>
     <style type="text/css">
       html {
@@ -100,18 +101,18 @@
       google.maps.event.addDomListener(window, 'load', initialize);
       
       $(function () {
+        FB.api('/me', function(response) {
+          if (response.name) {
+            FB.api("/me/picture?width=180&height=180",  function(response) {
+              $('#profile-picure').attr({'src': response.data.url});
+            }); 
+            $('#facebook-login-lnk').hide();
+          }
+        });
         $('#facebook-login-lnk').click(function (e) {
           e.preventDefault();
-          FB.Event.subscribe('auth.authResponseChange', function(response) {
-            if (response.status === 'connected') {
-              console.log(response);
-            } else if (response.status === 'not_authorized') {
-              console.log(response);
-              FB.login();
-            } else {
-              FB.login();
-              console.log(response);
-            }
+          FB.login(function (response) {
+            alert(response);
           });
         });
       });
@@ -129,6 +130,11 @@
       <a id="facebook-login-lnk" href="#">
         <img src="/assets/Large_230x36.png" />
       </a>
+      <div id="facebook-profile" style="display:none">
+        <p>
+          <img id="profile-picure" src="" align="left" />
+        </p>
+      </div>
     </div>
     <div
       id="fb"
@@ -155,10 +161,10 @@
   window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
-      appId      : '647377431958376',                        // App ID from the app dashboard
+      appId      : '647377431958376',                               // App ID from the app dashboard
       channelUrl : 'http://vemprarua.k3x.org/assets/channel.html', // Channel file for x-domain comms
-      status     : true,                                 // Check Facebook Login status
-      xfbml      : true                                  // Look for social plugins on the page
+      status     : true,                                          // Check Facebook Login status
+      xfbml      : true                                          // Look for social plugins on the page
     });
 
     // Additional initialization code such as adding Event Listeners goes here
