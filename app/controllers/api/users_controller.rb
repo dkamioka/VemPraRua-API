@@ -1,13 +1,21 @@
 class Api::UsersController < ApplicationController
 
   def create
-    @user = User.create(params[:user])
-    @user.name = "Anonymous \# #{@user.id}"
-    @user.ip_address = env['HTTP_X_REAL_IP'] ||= env['REMOTE_ADDR']
-    if params[:user][:latitude].nil?
-      set_coordinates_by_ip
+    fbuid = params[:user][:fbuid]
+    @user = User.find_by_fbuid(fbuid) if fbuid
+    if @user
+      @user.update_attributes(params[:user])
+    else
+      @user = User.create(params[:user])
+      if !user.name
+        @user.name = "Anonymous \# #{@user.id}"
+      end
+      @user.ip_address = env['HTTP_X_REAL_IP'] ||= env['REMOTE_ADDR']
+      if params[:user][:latitude].nil?
+        set_coordinates_by_ip
+      end
+      @user.save
     end
-    @user.save
   end
 
   def update
