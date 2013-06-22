@@ -6,6 +6,8 @@ VemPraRua::Application.routes.draw do
 
 
   namespace :api do
+  
+    post "users/last_ids"
     resources :users
     resources :locations
     get "versions/last"

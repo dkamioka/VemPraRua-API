@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :fbuid, :latitude, :longitude, :name, :regid
+  attr_accessible :fbuid, :latitude, :longitude, :name, :regid, :ip_address
   has_many :locations 
 
-  def last_online(horas=1)
+  def self.last_online(horas=1)
     last = [] 
     User.where('updated_at > ?', Time.now - horas.hour).each { |x| last << x.id }
     last
