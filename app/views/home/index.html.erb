@@ -103,16 +103,6 @@
             });
           }
         });
-        
-        FB.api('/me', function(response) {
-          if (response.name) {
-            $('#profile-name').html(response.name);
-            FB.api("/me/picture?width=70&height=70",  function(response) {
-              $('#profile-picure').attr({'src': response.data.url});
-            }); 
-            $('#facebook-login-lnk').hide();
-          }
-        });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
       
@@ -176,6 +166,15 @@
     });
 
     // Additional initialization code such as adding Event Listeners goes here
+    FB.api('/me', function(response) {
+          if (response.name) {
+            $('#profile-name').html(response.name);
+            FB.api("/me/picture?width=70&height=70",  function(response) {
+              $('#profile-picure').attr({'src': response.data.url});
+            }); 
+            $('#facebook-login-lnk').hide();
+          }
+        });
   };
 
   // Load the SDK asynchronously
