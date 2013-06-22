@@ -65,7 +65,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="/assets/app.css" />
     <script type="text/javascript">
-      function update (lat, lng) {
+      function update (response, at, lng) {
         $.ajax({
             method: 'POST',
             url: '/api/users',
@@ -135,10 +135,10 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                   var latitude = position.coords.latitude;
                   var longitude = position.coords.longitude;
-                  update(latitude, longitude);
+                  update(response, latitude, longitude);
                 });
               } else {
-                update(-23.558362, -46.635381);
+                update(response, -23.558362, -46.635381);
               }
               FB.api("/me/picture?width=50&height=50",  function(response) {
                 $('#profile-picure').attr({'src': response.data.url});
@@ -210,10 +210,10 @@
               navigator.geolocation.getCurrentPosition(function (position) {
               var latitude = position.coords.latitude;
               var longitude = position.coords.longitude;
-              update(latitude, longitude);
+              update(response, latitude, longitude);
             });
           } else {
-            update(-23.558362, -46.635381);
+            update(response, -23.558362, -46.635381);
           }
           
           FB.api("/me/picture?width=50&height=50",  function(response) {
