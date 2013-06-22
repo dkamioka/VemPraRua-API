@@ -46,6 +46,12 @@
         top: 65%;
         right: 63%;
       }
+      
+      #facebook-profile span {
+        position: absolute;
+        right: 0;
+        top: 65%
+      }
     </style>
 
     <script
@@ -172,9 +178,9 @@
           $('#profile-name').html(response.name);
           FB.api("/me/picture?width=70&height=70",  function(response) {
             $('#profile-picure').attr({'src': response.data.url});
-          }); 
-          $('#facebook-login-lnk').hide();
-          $('#facebook-profile').show();
+            $('#facebook-login-lnk').hide();
+            $('#facebook-profile').show();
+          });
         });
       } else if (response.status === 'not_authorized') {
         console.log(2);
