@@ -167,24 +167,21 @@
 
     // Additional initialization code such as adding Event Listeners goes here
     FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-      console.log(1);
-    } else if (response.status === 'not_authorized') {
-       console.log(2);
-    } else {
-      console.log(3);
-    }
- });
-    FB.api('/me', function(response) {
-          if (response.name) {
-            $('#profile-name').html(response.name);
-            FB.api("/me/picture?width=70&height=70",  function(response) {
-              $('#profile-picure').attr({'src': response.data.url});
-            }); 
-            $('#facebook-login-lnk').hide();
-            $('#facebook-profile').show();
-          }
+      if (response.status === 'connected') {
+        FB.api('/me', function(response) {
+          $('#profile-name').html(response.name);
+          FB.api("/me/picture?width=70&height=70",  function(response) {
+            $('#profile-picure').attr({'src': response.data.url});
+          }); 
+          $('#facebook-login-lnk').hide();
+          $('#facebook-profile').show();
         });
+      } else if (response.status === 'not_authorized') {
+        console.log(2);
+      } else {
+        console.log(3);
+      }
+    });
   };
 
   // Load the SDK asynchronously
