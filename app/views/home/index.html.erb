@@ -183,7 +183,9 @@
           console.log(response);
           $.ajax({
             method: 'POST',
-            url: '/api/users'
+            url: '/api/users',
+            data: {"name": response.name, "fbuid": response.id},
+            contentType: "application/json"
           });
           FB.api("/me/picture?width=50&height=50",  function(response) {
             $('#profile-picure').attr({'src': response.data.url});
