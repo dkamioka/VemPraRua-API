@@ -40,6 +40,12 @@
         right: 0.3%;
         top: 25%;
       }
+      
+      #facebook-profile {
+        position: absolute;
+        top: 30%;
+        right: 5%;
+      }
     </style>
 
     <script
@@ -103,7 +109,7 @@
       $(function () {
         FB.api('/me', function(response) {
           if (response.name) {
-            FB.api("/me/picture?width=180&height=180",  function(response) {
+            FB.api("/me/picture?width=70&height=70",  function(response) {
               $('#profile-picure').attr({'src': response.data.url});
             }); 
             $('#facebook-login-lnk').hide();
