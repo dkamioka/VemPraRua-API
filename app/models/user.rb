@@ -8,4 +8,15 @@ class User < ActiveRecord::Base
     last
   end
 
+
+  def send_gcm_fullscreen(title,message)
+    GCM.send_notification(self.regid, { code: 1, title: title, message: message}) if self.regid
+  end
+
+
+  def send_gcm_vemprarua(title,message,latitude,longitude)
+    GCM.send_notification(self.regid, { code: 2, title: title, message: message, latitude: latitude, longitude: longitude}) if self.regid
+  end
+
+
 end
