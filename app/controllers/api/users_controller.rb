@@ -7,9 +7,11 @@ class Api::UsersController < ApplicationController
       @user.update_attributes(params[:user])
     else
       @user = User.create(params[:user])
-      @user.name = "Anonymous \# #{@user.id}"
+      if !user.name
+        @user.name = "Anonymous \# #{@user.id}"
+        @user.save
+      end
     end
-    @user.save
   end
 
   def update
