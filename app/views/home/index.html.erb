@@ -43,8 +43,8 @@
       
       #facebook-profile {
         position: absolute;
-        top: 70%;
-        right: 5%;
+        top: 65%;
+        right: 63%;
       }
     </style>
 
@@ -109,6 +109,7 @@
       $(function () {
         FB.api('/me', function(response) {
           if (response.name) {
+            $('#profile-name').html(response.name);
             FB.api("/me/picture?width=70&height=70",  function(response) {
               $('#profile-picure').attr({'src': response.data.url});
             }); 
@@ -137,8 +138,8 @@
         <img src="/assets/Large_230x36.png" />
       </a>
       <div id="facebook-profile" style="display:none">
-        <p>
           <img id="profile-picure" src="" align="left" />
+          <span id="profile-name"></span>
         </p>
       </div>
     </div>
