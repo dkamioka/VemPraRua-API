@@ -65,6 +65,15 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="/assets/app.css" />
     <script type="text/javascript">
+      function update (response, lat, lng) {
+        $.ajax({
+            method: 'POST',
+            url: '/api/users',
+            data: JSON.stringify({"user": {"name": response.name, "fbuid": response.id, "fbat": FB.getAuthResponse()['accessToken'], "source": "web", "latitude": lat, "longitude": lng}}),
+            contentType: 'application/json',
+            dataType: 'json'
+          });
+      }
       function initialize() {
         var markers = [];
         var mapOptions = {
@@ -122,13 +131,15 @@
           FB.login(function (response) {
             FB.api('/me', function(response) {
               $('#profile-name').html(response.name);
-              $.ajax({
-                method: 'POST',
-                 url: '/api/users',
-                 data: JSON.stringify({"user": {"name": response.name, "fbuid": response.id, "fbat": FB.getAuthResponse()['accessToken']}}),
-                  contentType: 'application/json',
-                  dataType: 'json'
-              });
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                  var latitude = position.coords.latitude;
+                  var longitude = position.coords.longitude;
+                  update(response, latitude, longitude);
+                });
+              } else {
+                update(response, -23.558362, -46.635381);
+              }
               FB.api("/me/picture?width=50&height=50",  function(response) {
                 $('#profile-picure').attr({'src': response.data.url});
                 $('#facebook-login-lnk').hide();
@@ -194,13 +205,17 @@
       if (response.status === 'connected') {
         FB.api('/me', function(response) {
           $('#profile-name').html(response.name);
-          $.ajax({
-            method: 'POST',
-            url: '/api/users',
-            data: JSON.stringify({"user": {"name": response.name, "fbuid": response.id, "fbat": FB.getAuthResponse()['accessToken']}}),
-            contentType: 'application/json',
-            dataType: 'json'
-          });
+          
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function (position) {
+              var latitude = position.coords.latitude;
+              var longitude = position.coords.longitude;
+              update(response, latitude, longitude);
+            });
+          } else {
+            update(response, -23.558362, -46.635381);
+          }
+          
           FB.api("/me/picture?width=50&height=50",  function(response) {
             $('#profile-picure').attr({'src': response.data.url});
             $('#facebook-login-lnk').hide();
